@@ -1,7 +1,7 @@
 import os
 import db
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 
 def create_app():
@@ -40,7 +40,7 @@ def create_app():
         )
         banco.commit()
 
-        return f'Olá, {nome}!'
+        return redirect("listar")
 
     @app.route('/listar')
     def listar():
@@ -58,5 +58,17 @@ def create_app():
             [id]
         ).fetchone()
         return render_template('editar.html', pessoa=pessoa)
+
+    @app.route('/atualizar', methods=['POST'])
+    def atualizar():
+        id = request.form['id']
+        nome = request.form['nome']
+        banco = db.get_db()
+        banco.execute(
+            'UPDATE pessoa SET nome = ? WHERE id = ?',
+            (nome, id)
+        )
+        banco.commit()
+        return redirect("listar")
 
     return app
