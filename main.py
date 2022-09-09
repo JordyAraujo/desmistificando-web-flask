@@ -12,4 +12,8 @@ def create_app():
     def ola_nome(nome):
         return f'Olá, {nome}!'
 
+    @app.route('/cadastrar')
+    def form_cadastrar():
+        return render_template('cadastrar.html')
+
     return app
