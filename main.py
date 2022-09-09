@@ -6,6 +6,11 @@ from flask import Flask
 def create_app():
     app = Flask(__name__)
 
+    try:
+        os.makedirs(app.instance_path)
+    except OSError:
+        pass
+
     @app.route('/ola')
     def ola_mundo():
         return '<h1>Olá, mundo!</h1>'
