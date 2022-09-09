@@ -50,4 +50,13 @@ def create_app():
         ).fetchall()
         return render_template('listar.html', pessoas=pessoas)
 
+    @app.route('/<id>/editar')
+    def form_editar(id):
+        banco = db.get_db()
+        pessoa = banco.execute(
+            'SELECT * FROM pessoa WHERE id = (?)',
+            [id]
+        ).fetchone()
+        return render_template('editar.html', pessoa=pessoa)
+
     return app
