@@ -1,7 +1,7 @@
 import os
 import db
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 
 
 def create_app():
@@ -70,5 +70,16 @@ def create_app():
         )
         banco.commit()
         return redirect("listar")
+
+    @app.route('/<id>/deletar')
+    def deletar(id):
+        banco = db.get_db()
+        banco.execute(
+            'DELETE FROM pessoa WHERE id = ?',
+            [id]
+        )
+        banco.commit()
+
+        return redirect(url_for("listar"))
 
     return app
