@@ -1,7 +1,7 @@
 import os
 import db
 
-from flask import Flask
+from flask import Flask, render_template, request
 
 
 def create_app():
@@ -29,5 +29,17 @@ def create_app():
     @app.route('/cadastrar')
     def form_cadastrar():
         return render_template('cadastrar.html')
+
+    @app.route('/cadastrar', methods=['POST'])
+    def cadastrar():
+        nome = request.form['nome']
+        banco = db.get_db()
+        banco.execute(
+            "INSERT INTO pessoa (nome) VALUES (?)",
+            [nome],
+        )
+        banco.commit()
+
+        return f'Olá, {nome}!'
 
     return app
