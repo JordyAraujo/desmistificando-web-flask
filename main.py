@@ -16,6 +16,8 @@ def create_app():
         DATABASE=os.path.join(app.instance_path, f'{__name__}.sqlite'),
     )
 
+    db.init_app(app)
+
     @app.route('/ola')
     def ola_mundo():
         return '<h1>Olá, mundo!</h1>'
