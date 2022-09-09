@@ -42,4 +42,12 @@ def create_app():
 
         return f'Olá, {nome}!'
 
+    @app.route('/listar')
+    def listar():
+        banco = db.get_db()
+        pessoas = banco.execute(
+            'SELECT * FROM pessoa ORDER BY id DESC'
+        ).fetchall()
+        return render_template('listar.html', pessoas=pessoas)
+
     return app
