@@ -10,7 +10,9 @@
     <ul>
         {% for pessoa in pessoas %}
             <li>
-                {{ pessoa['nome'] }} - <a href="/{{ pessoa['id'] }}/editar">Editar</a>
+                {{ pessoa['nome'] }}
+                - <a href="/{{ pessoa['id'] }}/editar">Editar</a>
+                - <a href="/{{ pessoa['id'] }}/deletar">Deletar</a>
             </li>
         {% endfor %}
     </ul>
