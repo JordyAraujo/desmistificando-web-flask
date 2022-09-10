@@ -1,7 +1,7 @@
 import os
 import db
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 
 
 def create_app():
@@ -79,6 +79,6 @@ def create_app():
             [id]
         )
         banco.commit()
-        return redirect("listar")
+        return redirect(url_for("listar"))
 
     return app
