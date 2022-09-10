@@ -40,6 +40,6 @@ def create_app():
         )
         banco.commit()
 
-        return f'Olá, {nome}!'
+        return f'{nome} cadastrado(a) com sucesso!'
 
     return app
