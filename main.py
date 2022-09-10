@@ -71,4 +71,14 @@ def create_app():
         banco.commit()
         return redirect("listar")
 
+    @app.route('/<id>/deletar')
+    def deletar(id):
+        banco = db.get_db()
+        pessoa = banco.execute(
+            'DELETE FROM pessoa WHERE id = (?)',
+            [id]
+        )
+        banco.commit()
+        return redirect("listar")
+
     return app
