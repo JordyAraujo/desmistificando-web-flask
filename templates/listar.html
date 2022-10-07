@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar</title>
+</head>
+<body>
+    <ul>
+        {% for pessoa in pessoas %}
+            <li>
+                {{ pessoa['nome'] }}
+                - <a href="/{{ pessoa['id'] }}/editar">Editar</a>
+                - <a href="/{{ pessoa['id'] }}/deletar">Deletar</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
